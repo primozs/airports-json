@@ -51,16 +51,16 @@ export const getAirports = async (): Promise<Airport[]> => {
 
   const data: Airport[] = [];
   for (const item of json) {
-    if (
-      item.type === 'large_airport' ||
-      item.type === 'medium_airport' ||
-      item.type === 'small_airport'
-    )
-      data.push({
-        name: item.name,
-        lat: item.latitude_deg,
-        lon: item.longitude_deg,
-      });
+    // if (
+    //   item.type === 'large_airport' ||
+    //   item.type === 'medium_airport' ||
+    //   item.type === 'small_airport'
+    // )
+    data.push({
+      name: item.name,
+      lat: Number(item.latitude_deg),
+      lon: Number(item.longitude_deg),
+    });
   }
 
   await fs.writeAsync(path.resolve(output, 'airports-data.json'), json);
